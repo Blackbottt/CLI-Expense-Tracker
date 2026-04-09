@@ -48,5 +48,6 @@ while True:
         save_expenses(expenses)
         break
 
-print("Ungültige Eingabe")
+    else:
+        print("Ungültige Eingabe")
 
