@@ -5,11 +5,10 @@ expenses = []
 
 def save_expenses(exp):
     with open("expenses.json", "w") as f:
-        save = json.dumps(exp, f)
-        print("save", save)
+        json.dumps(exp, f)
 
 while True:
-    print("\n 1. Hinzufügen")
+    print("\n1. Hinzufügen")
     print("2. Anzeigen")
     print("3. Beenden")
 
@@ -17,22 +16,23 @@ while True:
 
     if wähle == "1":
         name = input("Name: ")
-        date = datetime.datetime.now().strftime("%d %B %Y")
 
         while not name.strip():
             print("Fehler: Bitte Input Name als wörter")
             name = input("Name: ")
+
+        date = datetime.datetime.now().strftime("%d %B %Y")
 
         while True:
             amount = input("Betrag: ")
             try:
                 amount = float(amount)
                 if amount <= 0:
-                    print("Bitte Input Betrag als positiv nummer")
+                    print("Bitte positiven Betrag eingeben")
                 else:
                     break    
             except ValueError:
-                print("Bitte Input Betrag als positiv nummer")
+                print("Bitte positiven Betrag eingeben")
 
         expenses.append({"name": name, "amount": amount, "date": date})
 
@@ -41,7 +41,6 @@ while True:
             print(f'{expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
 
     elif wähle == "3":
-        print("gut last")
         save_expenses(expenses)
         break
 
