@@ -6,7 +6,7 @@ global name, amount, date
 
 def save_expenses(exp):
     with open("expenses.json", "w") as f:
-        save = json.dumps(exp)
+        save = json.dumps(exp, f)
         print("save", save)
 
 while True:
