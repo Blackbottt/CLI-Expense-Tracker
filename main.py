@@ -49,6 +49,7 @@ while True:
     if wähle == "1":
         expense = add_expense()
         expenses.append(expense)
+        save_expenses(expenses)
 
     elif wähle == "2":
         show_expenses(expenses)
