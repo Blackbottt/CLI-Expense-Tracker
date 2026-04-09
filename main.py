@@ -2,7 +2,6 @@ import datetime
 import json
 
 expenses = []
-global name, amount, date
 
 def save_expenses(exp):
     with open("expenses.json", "w") as f:
@@ -36,12 +35,10 @@ while True:
                 print("Bitte Input Betrag als positiv nummer")
 
         expenses.append({"name": name, "amount": amount, "date": date})
-        continue
 
     elif wähle == "2":
         for expense in expenses:
             print(f'{expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
-            continue
 
     elif wähle == "3":
         print("gut last")
