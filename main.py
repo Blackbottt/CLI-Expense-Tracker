@@ -39,24 +39,24 @@ def validator(data_type, prompt):
     else:
         raise ValueError("Unsupported data type")
 
-# def add_category():
-#     print("Budget typisieren: \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
-#     budget_type = input("Wählen Ihrer Budget typisieren: ")
+def add_category():
+    print("Budget typisieren: \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
+    budget_type = input("Wählen Ihrer Budget typisieren: ")
 
-#     try:
-#         budget_type = int(budget_type)
-#     except ValueError:
-#         print("Bitte existiert Betrag eingeben")
-#     print("Budget typisieren: \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
-#     # category = input("Category: ")
-#     if budget_type == "1":
-#         print("Kategorian: \n1. Werbetreibend\n2. Bürobedarfsartikel\n3. Reiseausgaben \n4. Versorgungswirtschaft \n5. Beratungskosten")
+    try:
+        budget_type = int(budget_type)
+    except ValueError:
+        print("Bitte existiert Betrag eingeben")
+    print("Budget typisieren: \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
+    # category = input("Category: ")
+    if budget_type == "1":
+        print("Kategorian: \n1. Werbetreibend\n2. Bürobedarfsartikel\n3. Reiseausgaben \n4. Versorgungswirtschaft \n5. Beratungskosten")
 
-#     elif budget_type == "2":
-#         print("Kategorian: \n1. Wohnungs (Miete/Belehnen) \n2. Verkehrsmittel (Benzin/Öffentliche) \n3. Essen (Lebensmittel/außer Haus) \n4. Gesundheit (Versicherung/ Medizinische Ausgaben) /n5. 	Unterhaltung")
+    elif budget_type == "2":
+        print("Kategorian: \n1. Wohnungs (Miete/Belehnen) \n2. Verkehrsmittel (Benzin/Öffentliche) \n3. Essen (Lebensmittel/außer Haus) \n4. Gesundheit (Versicherung/ Medizinische Ausgaben) /n5. 	Unterhaltung")
 
-#     elif budget_type == "3":
-#         print("Kategorian: \n1. Nebenkosten (Elekrizitat/Wasser) \n2. Versicherung (Hause/Auto) \n3. Abspeicherungen (Vorsorgevermögen/Notfallfonds) \n4. Bildung (Unterrichtsgebühr/Materialen)")
+    elif budget_type == "3":
+        print("Kategorian: \n1. Nebenkosten (Elekrizitat/Wasser) \n2. Versicherung (Hause/Auto) \n3. Abspeicherungen (Vorsorgevermögen/Notfallfonds) \n4. Bildung (Unterrichtsgebühr/Materialen)")
 
 def add_expense():
     name = validator(str, "Name :")
@@ -70,11 +70,9 @@ def show_expenses(expenses):
     if not expenses:
         print("Keine Ausgaben vorhanden")
         return
-    
+        
     for i, expense in enumerate(expenses, 1):
-        if i == 1:
-            print(f'\n{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
-        else:
+            print("\n")
             print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
 
     total = sum(expense["amount"] for expense in expenses)
