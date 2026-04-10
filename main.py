@@ -143,7 +143,7 @@ while True:
         to_be_deleted = get_delete_index(expenses)
         if to_be_deleted is not None:
             confirmation = input("Sind sie sicher? (j/n)")
-            if confirmation == "j" or confirmation == "J":    
+            if confirmation == "j":    
                 expenses.pop(to_be_deleted)
                 print("Eintrag gelöscht.")
                 save_expenses(expenses)
