@@ -30,6 +30,9 @@ def show_expenses(expenses):
     for i, expense in enumerate(expenses, 1):
         print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
 
+    total = sum(expense["amount"] for expense in expenses)
+    print(f"Gesamt Budget ist {total:.2f}")
+
 def save_expenses(expenses):
     with open("expenses.json", "w") as f:
         json.dump(expenses, f)
