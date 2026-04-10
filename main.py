@@ -48,7 +48,7 @@ def delete_expense(expenses):
         index = input("Löscht: ")
         try:
             index = float(index)
-            if index > len(expenses) or index <= 0:
+            if 0 >= index > len(expenses):
                 print("Das Aufgaben besteht nicht!")
             else:
                 break
@@ -61,6 +61,7 @@ def delete_expense(expenses):
 expenses = load_expenses()
 
 while True:
+    
     if expenses == []:
         print("\n1. Hinzufügen")
         print("2. Anzeigen")
@@ -68,8 +69,8 @@ while True:
     else:
         print("\n1. Hinzufügen")
         print("2. Anzeigen")
-        print("3. Löschen")
-        print("4. Beenden")
+        print("3. Beenden")
+        print("4. Löschen")
 
     wähle = input("Wähle: ")
 
@@ -80,16 +81,16 @@ while True:
 
     elif wähle == "2":
         show_expenses(expenses)
-        
-    elif wähle == "3":
-        to_be_deleted = delete_expense(expenses)
-        expenses.pop(to_be_deleted)
-        save_expenses(expenses)
 
-    elif wähle == "4":
+    elif wähle == "3":
         save_expenses(expenses)
         break
 
+    elif wähle == "4":
+        to_be_deleted = delete_expense(expenses)
+        expenses.pop(to_be_deleted)
+        print("Eintrag gelöscht.")
+        save_expenses(expenses)
     else:
         print("Ungültige Eingabe")
 
