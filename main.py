@@ -55,8 +55,8 @@ def get_delete_index(expenses):
     print("Welche Nummer möchten Sie löschen?")
 
     while True:
-        index = int(input("Löscht: "))
         try:
+            index = int(input("Löscht: "))
             if index < 1 or index > len(expenses):
                 print("Eintrag existiert nicht!")
             else:
