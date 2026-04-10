@@ -40,13 +40,36 @@ def load_expenses():
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return []
+    
+def delete_expense(expenses):
+    print("Einstellen nummer zu Löschen")
+
+    while True:
+        index = input("Löscht: ")
+        try:
+            index = float(index)
+            if index > len(expenses) or index <= 0:
+                print("Das Aufgaben besteht nicht!")
+            else:
+                break
+        except ValueError:
+            print("Bitte positiven Betrag eingeben")
+    
+    delete = int(index) - 1
+    return delete
 
 expenses = load_expenses()
 
 while True:
-    print("\n1. Hinzufügen")
-    print("2. Anzeigen")
-    print("3. Beenden")
+    if expenses == []:
+        print("\n1. Hinzufügen")
+        print("2. Anzeigen")
+        print("3. Beenden")
+    else:
+        print("\n1. Hinzufügen")
+        print("2. Anzeigen")
+        print("3. Löschen")
+        print("4. Beenden")
 
     wähle = input("Wähle: ")
 
@@ -59,6 +82,11 @@ while True:
         show_expenses(expenses)
         
     elif wähle == "3":
+        to_be_deleted = delete_expense(expenses)
+        expenses.pop(to_be_deleted)
+        save_expenses(expenses)
+
+    elif wähle == "4":
         save_expenses(expenses)
         break
 
