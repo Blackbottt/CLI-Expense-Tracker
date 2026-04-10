@@ -7,7 +7,7 @@ def add_expense():
         print("Fehler: Bitte Input Name als Wörter")
         name = input("Name: ")
 
-    date = datetime.datetime.now().strftime("%d %B %Y")
+    date = datetime.datetime.now().isoformat()
 
     while True:
         amount = input("Betrag: ")
@@ -23,12 +23,16 @@ def add_expense():
     return {"name": name, "amount": amount, "date": date}
 
 def show_expenses(expenses):
-    for expense in expenses:
-        print(f'{expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
+    if not expenses:
+        print("Keine Ausgaben vorhanden")
+        return
+    
+    for i, expense in enumerate(expenses, 1):
+        print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
 
-def save_expenses(exp):
+def save_expenses(expenses):
     with open("expenses.json", "w") as f:
-        json.dump(exp, f)
+        json.dump(expenses, f)
 
 def load_expenses():
     try:
