@@ -40,31 +40,40 @@ def validator(data_type, prompt):
         raise ValueError("Unsupported data type")
 
 def add_category():
-    print("Budget typisieren: \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
-    budget_type = input("Wählen Ihrer Budget typisieren: ")
-
-    try:
-        budget_type = int(budget_type)
-    except ValueError:
-        print("Bitte existiert Betrag eingeben")
-    print("Budget typisieren: \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
-    # category = input("Category: ")
-    if budget_type == "1":
-        print("Kategorian: \n1. Werbetreibend\n2. Bürobedarfsartikel\n3. Reiseausgaben \n4. Versorgungswirtschaft \n5. Beratungskosten")
-
-    elif budget_type == "2":
-        print("Kategorian: \n1. Wohnungs (Miete/Belehnen) \n2. Verkehrsmittel (Benzin/Öffentliche) \n3. Essen (Lebensmittel/außer Haus) \n4. Gesundheit (Versicherung/ Medizinische Ausgaben) /n5. 	Unterhaltung")
-
-    elif budget_type == "3":
-        print("Kategorian: \n1. Nebenkosten (Elekrizitat/Wasser) \n2. Versicherung (Hause/Auto) \n3. Abspeicherungen (Vorsorgevermögen/Notfallfonds) \n4. Bildung (Unterrichtsgebühr/Materialen)")
-
+    categories = [
+        {
+            "Business": ["Advertising", "Office Supplies", "Travel Expenses", "Utilities", "Professional Fees"]
+        },
+        {
+            "Personal": ["Housing", "Transportation", "Food", "Health", "Entertainment"]
+        },
+        {
+            "Household": ["Utilities", "Insurance", "Savings", "Education"]
+        }
+    ]
+    print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
+    category_type = validator(int, "Wählen Ihrer Budget typisieren: ")
+    for category in categories:
+        if category_type == 1:
+            print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten")
+            option = validator(str, "Welcher Wahl bitte A, B...?")
+            # return 
+        elif category_type == 2:
+            print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/ Medizinische Ausgaben) /nE. 	Unterhaltung")
+            option = validator(str, "Welcher Wahl bitte A, B...?")
+        elif category_type == 3:
+            print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen)")
+            option = validator(str, "Welcher Wahl bitte A, B...?")
+        
+    
+    
 def add_expense():
     name = validator(str, "Name :")
     amount =  validator(float, "Betrag :")
+    category = add_category()
     date_iso = datetime.datetime.now().isoformat()
     date = datetime.datetime.fromisoformat(date_iso).strftime("%a %d %B %Y")
-    # add_category()
-    return {"name": name, "amount": amount, "date": date}
+    return {"name": name, "amount": amount, "date": date, "category": category}
 
 def show_expenses(expenses):
     if not expenses:
