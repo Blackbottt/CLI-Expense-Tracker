@@ -9,8 +9,6 @@ def add_expense():
 
     date_iso = datetime.datetime.now().isoformat()
     date = datetime.datetime.fromisoformat(date_iso).strftime("%a %d %B %Y")
-    print("dateNow: ", type(date))
-    print("dateNow2: ", date)
 
     while True:
         amount = input("Betrag: ")
@@ -31,10 +29,14 @@ def show_expenses(expenses):
         return
     
     for i, expense in enumerate(expenses, 1):
-        print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
+        if i == 1:
+            print(f'\n{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
+        else:
+            print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
+
 
     total = sum(expense["amount"] for expense in expenses)
-    print(f"Gesamt Budget ist {total:.2f}")
+    print(f"\nGesamt Budget ist {total:.2f}")
 
 def save_expenses(expenses):
     with open("expenses.json", "w") as f:
@@ -52,7 +54,7 @@ def get_delete_index(expenses):
         print("Keine Ausgaben vorhanden")
         return None
 
-    print("Welche Nummer möchten Sie löschen?")
+    print("\nWelche Nummer möchten Sie löschen?")
 
     while True:
         try:
@@ -81,7 +83,7 @@ while True:
         print("3. Beenden")
         print("4. Löschen")
 
-    wähle = input("Wähle: ")
+    wähle = input("\nWähle: ")
 
     if wähle == "1":
         expense = add_expense()
