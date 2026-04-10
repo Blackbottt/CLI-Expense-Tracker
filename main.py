@@ -41,21 +41,24 @@ def load_expenses():
     except (FileNotFoundError, json.JSONDecodeError):
         return []
     
-def delete_expense(expenses):
-    print("Einstellen nummer zu Löschen")
+def get_delete_index(expenses):
+    if not expenses:
+        print("Keine Ausgaben vorhanden")
+        return None
+
+    print("Welche Nummer möchten Sie löschen?")
 
     while True:
-        index = input("Löscht: ")
+        index = int(input("Löscht: "))
         try:
-            index = float(index)
-            if 0 >= index > len(expenses):
-                print("Das Aufgaben besteht nicht!")
+            if index < 1 or index > len(expenses):
+                print("Eintrag existiert nicht!")
             else:
                 break
         except ValueError:
             print("Bitte positiven Betrag eingeben")
     
-    delete = int(index) - 1
+    delete = index - 1
     return delete
 
 expenses = load_expenses()
@@ -87,10 +90,17 @@ while True:
         break
 
     elif wähle == "4":
-        to_be_deleted = delete_expense(expenses)
-        expenses.pop(to_be_deleted)
-        print("Eintrag gelöscht.")
-        save_expenses(expenses)
+        show_expenses(expenses)
+        to_be_deleted = get_delete_index(expenses)
+        if to_be_deleted is not None:
+            confirmation = input("Sind sie sicher? (j/n)")
+            if confirmation == "j" or confirmation == "J":    
+                expenses.pop(to_be_deleted)
+                print("Eintrag gelöscht.")
+                save_expenses(expenses)
+            else:
+                show_expenses(expenses)
+    
     else:
         print("Ungültige Eingabe")
 
