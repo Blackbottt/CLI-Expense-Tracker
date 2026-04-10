@@ -7,7 +7,10 @@ def add_expense():
         print("Fehler: Bitte Input Name als Wörter")
         name = input("Name: ")
 
-    date = datetime.datetime.now().isoformat()
+    date_iso = datetime.datetime.now().isoformat()
+    date = datetime.datetime.fromisoformat(date_iso).strftime("%a %d %B %Y")
+    print("dateNow: ", type(date))
+    print("dateNow2: ", date)
 
     while True:
         amount = input("Betrag: ")
