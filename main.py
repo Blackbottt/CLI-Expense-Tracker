@@ -42,34 +42,34 @@ def validator(data_type, prompt):
 def add_category():
     categories = [
         {
-            "type": "Business",
+            "type": "Geschaft",
             "options": {
-                "A": "Advertising",
-                "B": "Office Supplies",
-                "C": "Travel Expenses",
-                "D":  "Utilities",
-                "E": "Professional Fees",
+                "A": "Werbetreibend",
+                "B": "Bürobedarfsartikel",
+                "C": "Reiseausgaben",
+                "D": "Versorgungswirtschaft",
+                "E": "Beratungskosten",
                 "F": "Andere"
             }
         },
         {
-            "type": "Personal",
+            "type": "Persönlich",
             "options": {
-                "A": "Housing",
-                "B": "Transportation",
-                "C": "Food",
-                "D":  "Health",
-                "E": "Entertainment",
+                "A": "Wohnungs[Miete/Belehnen]",
+                "B": "Verkehrsmittel(Benzin/Öffentliche)",
+                "C": "Essen(Lebensmittel/außer Haus)",
+                "D": "Gesundheit(Versicherung/Medizinische Ausgaben)",
+                "E": "Unterhaltung",
                 "F": "Andere"
             }
         },
         {
-            "type": "Household",
+            "type": "Haushalt Nebenkosten",
             "options": {
-                "A": "Utilities",
-                "B": "Insurance",
-                "C": "Savings",
-                "D":  "Education",
+                "A": "Nebenkosten(Elekrizitat/Wasser)",
+                "B": "Versicherung(Hause/Auto)",
+                "C": "Abspeicherungen(Vorsorgevermögen/Notfallfonds)",
+                "D": "Bildung(Unterrichtsgebühr/Materialen)",
                 "E": "Andere"
             } 
         },
@@ -85,7 +85,7 @@ def add_category():
         category_type = categories[category_type - 1]["type"]
         return f"{category_type} ({category_option})"
     elif category_type == 2:
-        print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/ Medizinische Ausgaben) \nE. 	Unterhaltung\nF. Andere")
+        print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
         category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
         category_option = categories[category_type - 1]["options"][category_option]
         category_type = categories[category_type - 1]["type"]
