@@ -119,7 +119,7 @@ def show_expenses(expenses):
 
 def save_expenses(expenses):
     with open("expenses.json", "w") as f:
-        json.dump(expenses, f)
+        json.dump(expenses, f, indent=4)
 
 def load_expenses():
     try:
