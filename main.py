@@ -42,46 +42,46 @@ def validator(data_type, prompt):
 def add_category():
     categories = [
         {
-            1: {
-                {
-                    "type": "Business"
-                },
-                {
-                    "options": ["Advertising", "Office Supplies", "Travel Expenses", "Utilities", "Professional Fees"]
-                }
+            "type": "Business",
+            "options": {
+                "A": "Advertising",
+                "B": "Office Supplies",
+                "C": "Travel Expenses",
+                "D":  "Utilities",
+                "E": "Professional Fees"
             }
         },
         {
-            2: {
-                {
-                    "type": "Personal"
-                },
-                {
-                    "options": ["Housing", "Transportation", "Food", "Health", "Entertainment"]
-                }
+            "type": "Personal",
+            "options": {
+                "A": "Housing",
+                "B": "Transportation",
+                "C": "Food",
+                "D":  "Health",
+                "E": "Entertainment"
             }
         },
         {
-            3: {
-                {
-                    "type": "Household"
-                },
-                {
-                    "options": ["Utilities", "Insurance", "Savings", "Education"]
-                }
-            }
+            "type": "Household",
+            "options": {
+                "A": "Utilities",
+                "B": "Insurance",
+                "C": "Savings",
+                "D":  "Education",
+            } 
         },
     ]
 
     print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
     category_type = validator(int, "Wählen Ihrer Budget typisieren: ")
+    print("1a: ", category_type)
 
     if category_type == 1:
         print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten")
         category_option = validator(str, "Welcher Wahl bitte A, B...?")
-        category_type = category_type[0].items()
-        print("1: ", category_type)
-        # return 
+        category_type = categories[0].items()
+        print("1b: ", category_type)
+        return 0
     elif category_type == 2:
         print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/ Medizinische Ausgaben) /nE. 	Unterhaltung")
         option = validator(str, "Welcher Wahl bitte A, B...?")
