@@ -111,7 +111,7 @@ def show_expenses(expenses):
         return
         
     for i, expense in enumerate(expenses, 1):
-            print("\n")
+            if i == 1: print("\n")
             print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
 
     total = sum(expense["amount"] for expense in expenses)
@@ -181,13 +181,11 @@ while True:
         show_expenses(expenses)
         to_be_deleted = get_delete_index(expenses)
         if to_be_deleted is not None:
-            confirmation = input("Sind sie sicher? (j/n)")
-            if confirmation == "j":    
-                expenses.pop(to_be_deleted)
-                print("Eintrag gelöscht.")
-                save_expenses(expenses)
-            else:
-                show_expenses(expenses)
+            confirmation = input("Sind sie sicher? (j/n)").lower()
+            expenses.pop(to_be_deleted)
+            print("Eintrag gelöscht.")
+            save_expenses(expenses)
+            show_expenses(expenses)
     
     else:
         print("Ungültige Eingabe")
