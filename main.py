@@ -48,7 +48,8 @@ def add_category():
                 "B": "Office Supplies",
                 "C": "Travel Expenses",
                 "D":  "Utilities",
-                "E": "Professional Fees"
+                "E": "Professional Fees",
+                "F": "Andere"
             }
         },
         {
@@ -58,7 +59,8 @@ def add_category():
                 "B": "Transportation",
                 "C": "Food",
                 "D":  "Health",
-                "E": "Entertainment"
+                "E": "Entertainment",
+                "F": "Andere"
             }
         },
         {
@@ -68,28 +70,28 @@ def add_category():
                 "B": "Insurance",
                 "C": "Savings",
                 "D":  "Education",
+                "E": "Andere"
             } 
         },
     ]
 
     print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
     category_type = validator(int, "Wählen Ihrer Budget typisieren: ")
-    print("1a: ", category_type)
 
     if category_type == 1:
-        print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten")
+        print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
         category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
         category_option = categories[category_type - 1]["options"][category_option]
         category_type = categories[category_type - 1]["type"]
         return f"{category_type} ({category_option})"
     elif category_type == 2:
-        print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/ Medizinische Ausgaben) /nE. 	Unterhaltung")
+        print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/ Medizinische Ausgaben) \nE. 	Unterhaltung\nF. Andere")
         category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
         category_option = categories[category_type - 1]["options"][category_option]
         category_type = categories[category_type - 1]["type"]
         return f"{category_type} ({category_option})"
     elif category_type == 3:
-        print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen)")
+        print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
         category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
         category_option = categories[category_type - 1]["options"][category_option]
         category_type = categories[category_type - 1]["type"]
@@ -110,7 +112,7 @@ def show_expenses(expenses):
         
     for i, expense in enumerate(expenses, 1):
             print("\n")
-            print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["date"]}')
+            print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
 
     total = sum(expense["amount"] for expense in expenses)
     print(f"\nGesamt Budget ist {total:.2f}")
