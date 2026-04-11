@@ -39,6 +39,27 @@ def validator(data_type, prompt):
     else:
         raise ValueError("Unsupported data type")
 
+def validate_index(list, prompt1, prompt2):
+    # this function is different from validator because it validates list index numbers
+    if not list:
+        print("Keine Ausgaben vorhanden")
+        return None
+
+    print(prompt1)
+
+    while True:
+        try:
+            index = int(input(prompt2))
+            if index < 1 or index > len(list):
+                print("Eintrag existiert nicht!")
+            else:
+                break
+        except ValueError:
+            print("Bitte positiven Betrag eingeben")
+    
+    validated_index = index - 1
+    return validated_index
+
 def add_category():
     categories = [
         {
@@ -128,26 +149,6 @@ def load_expenses():
     except (FileNotFoundError, json.JSONDecodeError):
         return []
     
-def get_delete_index(expenses):
-    if not expenses:
-        print("Keine Ausgaben vorhanden")
-        return None
-
-    print("\nWelche Nummer möchten Sie löschen?")
-
-    while True:
-        try:
-            index = int(input("Löscht: "))
-            if index < 1 or index > len(expenses):
-                print("Eintrag existiert nicht!")
-            else:
-                break
-        except ValueError:
-            print("Bitte positiven Betrag eingeben")
-    
-    delete = index - 1
-    return delete
-
 def show_menu():
     expenses = load_expenses()
     
@@ -183,17 +184,24 @@ while True:
 
     elif wähle == "4":
         show_expenses(expenses)
-        to_be_deleted = get_delete_index(expenses)
-        if to_be_deleted is not None:
+        delete = validate_index(expenses, "\nWelche Nummer möchten Sie löschen?", "Löscht: ")
+
+        if delete is not None:
             confirmation = input("Sind sie sicher? (j/n)").lower()
-            expenses.pop(to_be_deleted)
+            expenses.pop(delete)
             print("Eintrag gelöscht.")
             save_expenses(expenses)
             show_expenses(expenses)
     
     elif wähle == "5":
-        get_expenses = show_expenses(expenses)
-        print("gotten: ", get_expenses)
+        show_expenses(expenses)
+
+        # if to_be_deleted is not None:
+        #     confirmation = input("Sind sie sicher? (j/n)").lower()
+        #     expenses.pop(to_be_deleted)
+        #     print("Eintrag gelöscht.")
+        #     save_expenses(expenses)
+        #     show_expenses(expenses)
 
     else:
         print("Ungültige Eingabe")
