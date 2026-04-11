@@ -148,9 +148,8 @@ def get_delete_index(expenses):
     delete = index - 1
     return delete
 
-expenses = load_expenses()
-
-while True:
+def show_menu():
+    expenses = load_expenses()
     
     if expenses == []:
         print("\n1. Hinzufügen")
@@ -161,7 +160,12 @@ while True:
         print("2. Anzeigen")
         print("3. Beenden")
         print("4. Löschen")
+        print("5. Bearbeiten")
 
+    return expenses
+
+while True:
+    expenses = show_menu()
     wähle = input("\nWähle: ")
 
     if wähle == "1":
@@ -187,6 +191,10 @@ while True:
             save_expenses(expenses)
             show_expenses(expenses)
     
+    elif wähle == "5":
+        get_expenses = show_expenses(expenses)
+        print("gotten: ", get_expenses)
+
     else:
         print("Ungültige Eingabe")
 
