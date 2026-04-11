@@ -60,7 +60,7 @@ def validate_index(list, prompt1, prompt2):
     validated_index = index - 1
     return validated_index
 
-def add_category():
+def add_category(filter="OFF"):
     categories = [
         {
             "type": "Geschaft",
@@ -96,28 +96,38 @@ def add_category():
         },
     ]
 
-    print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
-    category_type = validator(int, "Wählen Ihrer Budget typisieren: ")
+    if filter == "OFF":
+        print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
+        category_type = validator(int, "Wählen Ihrer Budget typisieren: ")
 
-    if category_type == 1:
-        print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
-        category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
-        category_option = categories[category_type - 1]["options"][category_option]
-        category_type = categories[category_type - 1]["type"]
-        return f"{category_type} ({category_option})"
-    elif category_type == 2:
-        print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
-        category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
-        category_option = categories[category_type - 1]["options"][category_option]
-        category_type = categories[category_type - 1]["type"]
-        return f"{category_type} ({category_option})"
-    elif category_type == 3:
-        print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
-        category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
-        category_option = categories[category_type - 1]["options"][category_option]
-        category_type = categories[category_type - 1]["type"]
-        return f"{category_type} ({category_option})"
-    
+        if category_type == 1:
+            print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
+            category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
+            category_option = categories[category_type - 1]["options"][category_option]
+            category_type = categories[category_type - 1]["type"]
+            return f"{category_type} ({category_option})"
+        elif category_type == 2:
+            print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
+            category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
+            category_option = categories[category_type - 1]["options"][category_option]
+            category_type = categories[category_type - 1]["type"]
+            return f"{category_type} ({category_option})"
+        elif category_type == 3:
+            print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
+            category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
+            category_option = categories[category_type - 1]["options"][category_option]
+            category_type = categories[category_type - 1]["type"]
+            return f"{category_type} ({category_option})"
+    else:
+        print(" \nA. Geschaft \nB. Persönlich \nC. Haushalt Nebenkosten")
+        category_type = validator(str, "Wählen Ihrer Filtern Kategorie: ").upper()
+        if category_type == "A": category_type = 0
+        elif category_type == "B": category_type = 1
+        elif category_type == "C": category_type = 2
+        category_type = categories[category_type]["type"]
+        print("category", category_type)
+        show_expenses(expenses, filter=f"{category_type}")
+
 def add_expense():
     name = validator(str, "Name :")
     amount =  validator(float, "Betrag :")
@@ -126,14 +136,24 @@ def add_expense():
     date = datetime.datetime.fromisoformat(date_iso).strftime("%a %d %B %Y")
     return {"name": name, "amount": amount, "date": date, "category": category}
 
-def show_expenses(expenses):
+def show_expenses(expenses, filter="OFF"):
     if not expenses:
         print("Keine Ausgaben vorhanden")
         return
-        
-    for i, expense in enumerate(expenses, 1):
-            if i == 1: print("\n")
-            print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+    
+    print("FILTER###: ", filter)
+    
+
+    if filter == "OFF":    
+        for i, expense in enumerate(expenses, 1):
+                if i == 1: print("\n")
+                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+    else:
+        # print([e for e in expenses ])
+        for i, expense in enumerate(expenses, 1):
+            if expense["category"].startswith(filter):
+                if i == 1: print("\n")
+                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
 
     total = sum(expense["amount"] for expense in expenses)
     print(f"\nGesamt Budget ist {total:.2f}")
@@ -162,6 +182,7 @@ def show_menu():
         print("3. Beenden")
         print("4. Löschen")
         print("5. Bearbeiten")
+        print("6. Nach Kategorie Filtern")
 
     return expenses
 
@@ -215,6 +236,9 @@ while True:
             print("Eintrag bearbeitet.")
             save_expenses(expenses)
             show_expenses(expenses)
+
+    elif wähle == "6":
+        add_category(filter="ON")
 
     else:
         print("Ungültige Eingabe")
