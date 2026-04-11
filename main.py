@@ -195,13 +195,26 @@ while True:
     
     elif wähle == "5":
         show_expenses(expenses)
+        edit = validate_index(expenses, "\nWelche Nummer möchten Sie Bearbeiten?", "Bearbeitet: ")
 
-        # if to_be_deleted is not None:
-        #     confirmation = input("Sind sie sicher? (j/n)").lower()
-        #     expenses.pop(to_be_deleted)
-        #     print("Eintrag gelöscht.")
-        #     save_expenses(expenses)
-        #     show_expenses(expenses)
+        if edit is not None:
+            print("Whelcher Wert sie bearbeiten möchten?")
+            specification = validator(str, "Name/Betrag/Kategorie: ").lower()
+
+            if specification == "name":
+                name = validator(str, "Name :")
+                expenses[edit]["name"] = name
+
+            elif specification == "betrag":
+                amount =  validator(float, "Betrag :")
+                expenses[edit]["amount"] = amount
+
+            elif specification == "kategorie":
+                category = add_category()
+                expenses[edit]["category"] = category
+            print("Eintrag bearbeitet.")
+            save_expenses(expenses)
+            show_expenses(expenses)
 
     else:
         print("Ungültige Eingabe")
