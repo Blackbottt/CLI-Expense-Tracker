@@ -141,7 +141,7 @@ def add_expense():
     category = add_category()
     date_iso = datetime.datetime.now().isoformat()
     date_readable = datetime.datetime.fromisoformat(date_iso).strftime("%a %d %B %Y")
-    return {"name": name, "amount": amount, "date": [date_iso, date_readable], "category": category}
+    return {"name": name, "amount": amount, "date_iso": date_iso, "date": date_readable, "category": category}
 
 def show_expenses(expenses, filter="OFF"):
     if not expenses:
