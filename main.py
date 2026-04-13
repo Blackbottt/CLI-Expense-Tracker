@@ -97,12 +97,12 @@ def add_category(filter="OFF"):
 
     if filter == "OFF":
         print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
-        category_type = validator(int, "Wählen Ihrer Budget typisieren: ")
+        category_type = validator("Wählen Ihrer Budget typisieren: ", integer_validation_logic)
 
         if category_type == 1:
             print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
             while True:
-                category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
+                category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
                 if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
                     break
                 else:
@@ -113,7 +113,7 @@ def add_category(filter="OFF"):
         elif category_type == 2:
             print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
             while True:
-                category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
+                category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
                 if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
                     break
                 else:
@@ -124,7 +124,7 @@ def add_category(filter="OFF"):
         elif category_type == 3:
             print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
             while True:
-                category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
+                category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
                 if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
                     break
                 else:
@@ -134,7 +134,7 @@ def add_category(filter="OFF"):
             return f"{category_type} ({category_option})"
     else:
         print(" \nA. Geschaft \nB. Persönlich \nC. Haushalt Nebenkosten")
-        category_type = validator(str, "Wählen Ihrer Filtern Kategorie: ").upper()
+        category_type = validator("Wählen Ihrer Filtern Kategorie: ", string_validation_logic).upper()
         if category_type == "A": category_type = 0
         elif category_type == "B": category_type = 1
         elif category_type == "C": category_type = 2
@@ -142,8 +142,8 @@ def add_category(filter="OFF"):
         return category_type
 
 def add_expense():
-    name = validator(str, "Name :")
-    amount =  validator(float, "Betrag :")
+    name = validator("Name :", string_validation_logic)
+    amount =  validator("Betrag :", string_validation_logic)
     category = add_category()
     date_iso = datetime.datetime.now().isoformat()
     date_readable = datetime.datetime.fromisoformat(date_iso).strftime("%a %d %B %Y")
