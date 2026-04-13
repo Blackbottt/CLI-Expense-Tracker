@@ -116,17 +116,22 @@ def add_category(filter="OFF"):
                 break
             else:
                 print("Bitte gib einen bestehende option")
-        print("type: ", category_type)
-        print("option: ", category_option)
         category_option = categories[category_type - 1]["options"][category_option]
         category_type = categories[category_type - 1]["type"]
         return f"{category_type} ({category_option})"
     else:
-        print(" \nA. Geschaft \nB. Persönlich \nC. Haushalt Nebenkosten")
-        category_type = validator("Wählen Ihrer Filtern Kategorie: ", string_validation_logic).upper()
-        if category_type == "A": category_type = 0
-        elif category_type == "B": category_type = 1
-        elif category_type == "C": category_type = 2
+        while True:
+            print(" \nA. Geschaft \nB. Persönlich \nC. Haushalt Nebenkosten")
+            category_type = validator("Wählen Ihrer Filtern Kategorie: ", string_validation_logic).upper()
+            if category_type == "A": 
+                category_type = 0
+                break
+            elif category_type == "B": 
+                category_type = 1
+                break
+            elif category_type == "C": 
+                category_type = 2
+                break
         category_type = categories[category_type]["type"]
         return category_type
 
