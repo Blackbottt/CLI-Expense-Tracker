@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Goods",
+        "amount": 500.0,
+        "date": "Sat 11 April 2026",
+        "category": "Geschaft (B\u00fcrobedarfsartikel)"
+    },
+    {
+        "name": "Gas",
+        "amount": 75.0,
+        "date": "Sat 11 April 2026",
+        "category": "Haushalt Nebenkosten (Nebenkosten(Elekrizitat/Wasser))"
+    },
+    {
+        "name": "Airtime",
+        "amount": 40.0,
+        "date": "Mon 13 April 2026",
+        "category": "Haushalt Nebenkosten (Nebenkosten(Elekrizitat/Wasser))"
+    }
+]

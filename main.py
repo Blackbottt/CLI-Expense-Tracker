@@ -140,23 +140,23 @@ def show_expenses(expenses, filter="OFF"):
     if not expenses:
         print("Keine Ausgaben vorhanden")
         return
-    
-    print("FILTER###: ", filter)
-    
 
     if filter == "OFF":    
         for i, expense in enumerate(expenses, 1):
-                if i == 1: print("\n")
-                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+            if i == 1: print("\n")
+            print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+        total = sum(expense["amount"] for expense in expenses)
     else:
-        # print([e for e in expenses ])
         for i, expense in enumerate(expenses, 1):
             if expense["category"].startswith(filter):
                 if i == 1: print("\n")
                 print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+            else:
+                print("Kein Ausgaben von diese Kategorie")
+        total = sum(expense["amount"] for expense in expenses if expense["category"].startswith(filter))
 
-    total = sum(expense["amount"] for expense in expenses)
     print(f"\nGesamt Budget ist {total:.2f}")
+
 
 def save_expenses(expenses):
     with open("expenses.json", "w") as f:
