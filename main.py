@@ -49,7 +49,6 @@ def integer_validation_logic(user_input, prompt):
         
     return user_input
 
-
 def validate_index(list, prompt1, prompt2):
     # this function is different from validator because it validates list index numbers
     if not list:
@@ -110,40 +109,21 @@ def add_category(filter="OFF"):
     if filter == "OFF":
         print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
         category_type = validator("Wählen Ihrer Budget typisieren: ", integer_validation_logic)
-
-        if category_type == 1:
-            print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
-            while True:
-                category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
-                if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
-                    break
-                else:
-                    print("Bitte gib einen bestehende option")
-            category_option = categories[category_type - 1]["options"][category_option]
-            category_type = categories[category_type - 1]["type"]
-            return f"{category_type} ({category_option})"
-        elif category_type == 2:
-            print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
-            while True:
-                category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
-                if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
-                    break
-                else:
-                    print("Bitte gib einen bestehende option")
-            category_option = categories[category_type - 1]["options"][category_option]
-            category_type = categories[category_type - 1]["type"]
-            return f"{category_type} ({category_option})"
-        elif category_type == 3:
-            print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
-            while True:
-                category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
-                if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
-                    break
-                else:
-                    print("Bitte gib einen bestehende option")
-            category_option = categories[category_type - 1]["options"][category_option]
-            category_type = categories[category_type - 1]["type"]
-            return f"{category_type} ({category_option})"
+        while True:
+            if category_type == 1:
+                print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
+            elif category_type == 2:
+                print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
+            elif category_type == 3:
+                print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
+            category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
+            if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
+                break
+            else:
+                print("Bitte gib einen bestehende option")
+        category_option = categories[category_type - 1]["options"][category_option]
+        category_type = categories[category_type - 1]["type"]
+        return f"{category_type} ({category_option})"
     else:
         print(" \nA. Geschaft \nB. Persönlich \nC. Haushalt Nebenkosten")
         category_type = validator("Wählen Ihrer Filtern Kategorie: ", string_validation_logic).upper()
