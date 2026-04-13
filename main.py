@@ -102,7 +102,6 @@ def add_category(filter="OFF"):
 
         if category_type == 1:
             print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
-            category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
             while True:
                 category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
                 if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
@@ -114,7 +113,6 @@ def add_category(filter="OFF"):
             return f"{category_type} ({category_option})"
         elif category_type == 2:
             print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
-            category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
             while True:
                 category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
                 if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
@@ -126,7 +124,6 @@ def add_category(filter="OFF"):
             return f"{category_type} ({category_option})"
         elif category_type == 3:
             print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
-            category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
             while True:
                 category_option = validator(str, "Welcher Wahl bitte A, B...?").upper()
                 if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
