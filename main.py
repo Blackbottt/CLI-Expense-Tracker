@@ -3,7 +3,7 @@ import json
 
 def validator(prompt, rule_function):
     user_input = input(prompt)
-    user_input = rule_function(user_input)
+    user_input = rule_function(user_input, prompt)
     return user_input
     # else:
         # raise ValueError("Unsupported data type")
@@ -143,7 +143,7 @@ def add_category(filter="OFF"):
 
 def add_expense():
     name = validator("Name :", string_validation_logic)
-    amount =  validator("Betrag :", string_validation_logic)
+    amount =  validator("Betrag :", float_validation_logic)
     category = add_category()
     date_iso = datetime.datetime.now().isoformat()
     date_readable = datetime.datetime.fromisoformat(date_iso).strftime("%a %d %B %Y")
