@@ -146,6 +146,17 @@ def show_expenses(expenses, filter="OFF"):
             if i == 1: print("\n")
             print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
         total = sum(expense["amount"] for expense in expenses)
+    elif filter == "summary":
+        month = validator(str, "month :")
+
+        for i, expense in enumerate(expenses, 1):
+            if expense["date"]:
+                if i == 1: print("\n")
+                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+            else:
+                print("Kein Ausgaben von diese Datum")
+        total = sum(expense["amount"] for expense in expenses if expense["category"].startswith(filter))
+
     else:
         for i, expense in enumerate(expenses, 1):
             if expense["category"].startswith(filter):
@@ -157,7 +168,6 @@ def show_expenses(expenses, filter="OFF"):
 
     print(f"\nGesamt Budget ist {total:.2f}")
 
-
 def save_expenses(expenses):
     with open("expenses.json", "w") as f:
         json.dump(expenses, f, indent=4)
@@ -168,7 +178,7 @@ def load_expenses():
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return []
-    
+
 def show_menu():
     expenses = load_expenses()
     
@@ -183,6 +193,7 @@ def show_menu():
         print("4. Löschen")
         print("5. Bearbeiten")
         print("6. Nach Kategorie Filtern")
+        print("7. Monatlich Summary")
 
     return expenses
 
@@ -239,6 +250,9 @@ while True:
 
     elif wähle == "6":
         add_category(filter="ON")
+
+    elif wähle == "7":
+        show_expenses(expenses, filter="summary")
 
     else:
         print("Ungültige Eingabe")
