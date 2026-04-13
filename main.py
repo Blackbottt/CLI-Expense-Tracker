@@ -220,8 +220,9 @@ while True:
 
         if delete is not None:
             confirmation = input("Sind sie sicher? (j/n)").lower()
-            expenses.pop(delete)
-            print("Eintrag gelöscht.")
+            if confirmation == "j": 
+                expenses.pop(delete)
+                print("Eintrag gelöscht.")
             save_expenses(expenses)
             show_expenses(expenses)
     
