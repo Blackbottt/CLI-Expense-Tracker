@@ -1,39 +1,12 @@
 import datetime
 import json
 
-def validator(data_type, prompt):
-    # if data_type == str:
+def validator(prompt, rule_function):
     user_input = input(prompt)
-    user_input = string_validation_logic(user_input)
+    user_input = rule_function(user_input)
     return user_input
-    
-    # elif data_type == float:
-    #     while True:
-    #         user_input = input(prompt)
-    #         try:
-    #             user_input = float(user_input)
-    #             if user_input <= 0:
-    #                 print("Bitte positiven Betrag eingeben")
-    #             else:
-    #                 break
-    #         except ValueError:
-    #             print("Bitte positiven Betrag eingeben")
-
-    #     return user_input
-
-    # elif data_type == int:
-    #     while True:
-    #         user_input = input(prompt)
-    #         try:
-    #             user_input = int(user_input)
-    #             break
-    #         except ValueError:
-    #             print("Bitte positiven Betrag eingeben")
-        
-    #     return user_input
-
-    else:
-        raise ValueError("Unsupported data type")
+    # else:
+        # raise ValueError("Unsupported data type")
 
 def string_validation_logic(user_input):
     while not user_input.strip():
@@ -41,7 +14,29 @@ def string_validation_logic(user_input):
         user_input = input("Name: ")
     return user_input
 
- 
+def float_validation_logic(user_input):
+    while True:
+        user_input = input("Betrag :")
+        try:
+            user_input = float(user_input)
+            if user_input <= 0:
+                print("Bitte positiven Betrag eingeben")
+            else:
+                break
+        except ValueError:
+            print("Bitte positiven Betrag eingeben")
+
+def integer_validation_logic(user_input):
+    while True:
+        user_input = input(prompt)
+        try:
+            user_input = int(user_input)
+            break
+        except ValueError:
+            print("Bitte positiven Betrag eingeben")
+        
+    return user_input
+
 
 def validate_index(list, prompt1, prompt2):
     # this function is different from validator because it validates list index numbers

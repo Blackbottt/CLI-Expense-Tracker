@@ -43,5 +43,23 @@
             "Mon 13 April 2026"
         ],
         "category": "Pers\u00f6nlich (Wohnungs[Miete/Belehnen])"
+    },
+    {
+        "name": "haha",
+        "amount": "100",
+        "date": [
+            "2026-04-13T14:08:55.984090",
+            "Mon 13 April 2026"
+        ],
+        "category": null
+    },
+    {
+        "name": "55",
+        "amount": "aa",
+        "date": [
+            "2026-04-13T14:18:08.284094",
+            "Mon 13 April 2026"
+        ],
+        "category": null
     }
 ]
