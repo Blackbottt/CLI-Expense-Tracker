@@ -151,10 +151,9 @@ def show_expenses(expenses, filter="OFF"):
         for i, expense in enumerate(expenses, 1):
             date_str = datetime.datetime.fromisoformat(expense["date"][0]).strftime("%B").lower()
             if month == date_str:
-                print("printing...")
                 if i == 1: print("\n")
                 print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"][1]}')
-        total = sum(expense["amount"] for expense in expenses if expense["date"][1].startswith(month))
+        total = sum(expense["amount"] for expense in expenses if expense["date"][1])
 
     else:
         filter_found = False
