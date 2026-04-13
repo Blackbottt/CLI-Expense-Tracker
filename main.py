@@ -8,13 +8,13 @@ def validator(prompt, rule_function):
     # else:
         # raise ValueError("Unsupported data type")
 
-def string_validation_logic(user_input):
+def string_validation_logic(user_input, prompt):
     while not user_input.strip():
         print("Fehler: Bitte Input Name als Wörter")
         user_input = input("Name: ")
     return user_input
 
-def float_validation_logic(user_input):
+def float_validation_logic(user_input, prompt):
     while True:
         user_input = input("Betrag :")
         try:
@@ -26,7 +26,7 @@ def float_validation_logic(user_input):
         except ValueError:
             print("Bitte positiven Betrag eingeben")
 
-def integer_validation_logic(user_input):
+def integer_validation_logic(user_input, prompt):
     while True:
         user_input = input(prompt)
         try:
