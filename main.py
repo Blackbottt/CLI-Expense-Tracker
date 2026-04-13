@@ -11,12 +11,12 @@ def validator(prompt, rule_function):
 def string_validation_logic(user_input, prompt):
     while not user_input.strip():
         print("Fehler: Bitte Input Name als Wörter")
-        user_input = input("Name: ")
+        user_input = input(prompt)
     return user_input
 
 def float_validation_logic(user_input, prompt):
     while True:
-        user_input = input("Betrag :")
+        user_input = input(prompt)
         try:
             user_input = float(user_input)
             if user_input <= 0:
