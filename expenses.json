@@ -1,20 +1,47 @@
 [
     {
-        "name": "Goods",
-        "amount": 500.0,
-        "date": "Sat 11 April 2026",
-        "category": "Geschaft (B\u00fcrobedarfsartikel)"
+        "name": "sneakers",
+        "amount": 300.0,
+        "date": [
+            "2026-04-13T10:42:27.946857",
+            "Mon 13 April 2026"
+        ],
+        "category": "Pers\u00f6nlich (Unterhaltung)"
     },
     {
-        "name": "Gas",
-        "amount": 75.0,
-        "date": "Sat 11 April 2026",
-        "category": "Haushalt Nebenkosten (Nebenkosten(Elekrizitat/Wasser))"
+        "name": "food",
+        "amount": 100.0,
+        "date": [
+            "2026-04-13T10:42:44.314740",
+            "Mon 13 April 2026"
+        ],
+        "category": "Pers\u00f6nlich (Unterhaltung)"
     },
     {
-        "name": "Airtime",
-        "amount": 40.0,
-        "date": "Mon 13 April 2026",
-        "category": "Haushalt Nebenkosten (Nebenkosten(Elekrizitat/Wasser))"
+        "name": "lunch",
+        "amount": 20.0,
+        "date": [
+            "2026-04-13T12:57:56.831801",
+            "Mon 13 April 2026"
+        ],
+        "category": null
+    },
+    {
+        "name": "ddds",
+        "amount": 546.0,
+        "date": [
+            "2026-04-13T13:31:29.245138",
+            "Mon 13 April 2026"
+        ],
+        "category": "Geschaft (Werbetreibend)"
+    },
+    {
+        "name": "xaxa",
+        "amount": 985.0,
+        "date": [
+            "2026-04-13T13:37:34.110126",
+            "Mon 13 April 2026"
+        ],
+        "category": "Pers\u00f6nlich (Wohnungs[Miete/Belehnen])"
     }
 ]

@@ -2,42 +2,46 @@ import datetime
 import json
 
 def validator(data_type, prompt):
-    if data_type == str:
-        user_input = input(prompt)
-
-        while not user_input.strip():
-            print("Fehler: Bitte Input Name als Wörter")
-            user_input = input("Name: ")
+    # if data_type == str:
+    user_input = input(prompt)
+    user_input = string_validation_logic(user_input)
+    return user_input
     
-        return user_input
-    
-    elif data_type == float:
-        while True:
-            user_input = input(prompt)
-            try:
-                user_input = float(user_input)
-                if user_input <= 0:
-                    print("Bitte positiven Betrag eingeben")
-                else:
-                    break
-            except ValueError:
-                print("Bitte positiven Betrag eingeben")
+    # elif data_type == float:
+    #     while True:
+    #         user_input = input(prompt)
+    #         try:
+    #             user_input = float(user_input)
+    #             if user_input <= 0:
+    #                 print("Bitte positiven Betrag eingeben")
+    #             else:
+    #                 break
+    #         except ValueError:
+    #             print("Bitte positiven Betrag eingeben")
 
-        return user_input
+    #     return user_input
 
-    elif data_type == int:
-        while True:
-            user_input = input(prompt)
-            try:
-                user_input = int(user_input)
-                break
-            except ValueError:
-                print("Bitte positiven Betrag eingeben")
+    # elif data_type == int:
+    #     while True:
+    #         user_input = input(prompt)
+    #         try:
+    #             user_input = int(user_input)
+    #             break
+    #         except ValueError:
+    #             print("Bitte positiven Betrag eingeben")
         
-        return user_input
+    #     return user_input
 
     else:
         raise ValueError("Unsupported data type")
+
+def string_validation_logic(user_input):
+    while not user_input.strip():
+        print("Fehler: Bitte Input Name als Wörter")
+        user_input = input("Name: ")
+    return user_input
+
+ 
 
 def validate_index(list, prompt1, prompt2):
     # this function is different from validator because it validates list index numbers
