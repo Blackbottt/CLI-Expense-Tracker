@@ -2,25 +2,20 @@ import datetime
 import json
 
 def validator(prompt, rule_function):
-    user_input = input(prompt)
-    user_input = rule_function(user_input, prompt)
+    # user_input = input(prompt)
+    user_input = rule_function(prompt)
     return user_input
     # else:
         # raise ValueError("Unsupported data type")
 
-def string_validation_logic(user_input, prompt):
+def string_validation_logic(prompt):
+    user_input = input(prompt)
     while not user_input.strip():
         print("Fehler: Bitte Input Name als Wörter")
         user_input = input(prompt)
     return user_input
 
-def float_validation_logic(user_input, prompt):
-    try:
-        user_input = float(user_input)
-        if user_input <= 0:
-            print("Bitte positiven Betrag eingeben")
-    except ValueError:
-        print("Bitte positiven Betrag eingeben")
+def float_validation_logic(prompt):
     while True:
         user_input = input(prompt)
         try:
@@ -33,12 +28,7 @@ def float_validation_logic(user_input, prompt):
             print("Bitte positiven Betrag eingeben")
     return user_input
 
-def integer_validation_logic(user_input, prompt):
-    # print("Int: ", int(user_input))
-    try:
-        user_input = int(user_input)
-    except ValueError:
-        print("Bitte positiven Betrag eingeben")
+def integer_validation_logic(prompt):
     while True:
         user_input = input(prompt)
         try:
@@ -46,7 +36,6 @@ def integer_validation_logic(user_input, prompt):
             break
         except ValueError:
             print("Bitte positiven Betrag eingeben")
-        
     return user_input
 
 def validate_index(list, prompt1, prompt2):
@@ -107,20 +96,28 @@ def add_category(filter="OFF"):
     ]
 
     if filter == "OFF":
-        print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
-        category_type = validator("Wählen Ihrer Budget typisieren: ", integer_validation_logic)
         while True:
+            print(" \n1. Geschaft \n2. Persönlich \n3. Haushalt Nebenkosten")
+            category_type = validator("Wählen Ihrer Budget typisieren: ", integer_validation_logic)
             if category_type == 1:
                 print("A. Werbetreibend\nB. Bürobedarfsartikel\nC. Reiseausgaben \nD. Versorgungswirtschaft \nE. Beratungskosten \nF. Andere")
+                break
             elif category_type == 2:
                 print("\nA. Wohnungs(Miete/Belehnen) \nB. Verkehrsmittel(Benzin/Öffentliche) \nC. Essen(Lebensmittel/außer Haus) \nD. Gesundheit(Versicherung/Medizinische Ausgaben) \nE. Unterhaltung \nF. Andere")
+                break
             elif category_type == 3:
                 print("\nA. Nebenkosten(Elekrizitat/Wasser) \nB. Versicherung(Hause/Auto) \nC. Abspeicherungen(Vorsorgevermögen/Notfallfonds) \nD. Bildung(Unterrichtsgebühr/Materialen) \nE. Andere")
+                break
+            else:
+                print("Bitte gib einen bestehende option")
+        while True: 
             category_option = validator("Welcher Wahl bitte A, B...?", string_validation_logic).upper()
             if any(value == category_option for value in categories[category_type - 1]["options"].keys()):
                 break
             else:
                 print("Bitte gib einen bestehende option")
+        print("type: ", category_type)
+        print("option: ", category_option)
         category_option = categories[category_type - 1]["options"][category_option]
         category_type = categories[category_type - 1]["type"]
         return f"{category_type} ({category_option})"
