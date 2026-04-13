@@ -157,12 +157,14 @@ def show_expenses(expenses, filter="OFF"):
         total = sum(expense["amount"] for expense in expenses if expense["date"][1].startswith(month))
 
     else:
+        filter_found = False
         for i, expense in enumerate(expenses, 1):
             if expense["category"].startswith(filter):
+                filter_found = True
                 if i == 1: print("\n")
                 print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"][1]}')
-            else:
-                print("Kein Ausgaben von diese Kategorie")
+        if filter_found == False:
+            print("Kein Ausgaben von diese Kategorie")
         total = sum(expense["amount"] for expense in expenses if expense["category"].startswith(filter))
 
     print(f"\nGesamt Budget ist {total:.2f}")
