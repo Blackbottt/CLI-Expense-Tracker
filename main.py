@@ -144,24 +144,24 @@ def show_expenses(expenses, filter="OFF"):
     if filter == "OFF":    
         for i, expense in enumerate(expenses, 1):
             if i == 1: print("\n")
-            print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+            print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"][1]}')
         total = sum(expense["amount"] for expense in expenses)
     elif filter == "summary":
-        month = validator(str, "month :")
+        month = validator(str, "month :").lower()
 
         for i, expense in enumerate(expenses, 1):
-            if expense["date"]:
+            date_str = datetime.datetime.fromisoformat(expense["date"][0]).strftime("%B").lower()
+            if month == date_str:
+                print("printing...")
                 if i == 1: print("\n")
-                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
-            else:
-                print("Kein Ausgaben von diese Datum")
-        total = sum(expense["amount"] for expense in expenses if expense["category"].startswith(filter))
+                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"][1]}')
+        total = sum(expense["amount"] for expense in expenses if expense["date"][1].startswith(month))
 
     else:
         for i, expense in enumerate(expenses, 1):
             if expense["category"].startswith(filter):
                 if i == 1: print("\n")
-                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"][1]}')
             else:
                 print("Kein Ausgaben von diese Kategorie")
         total = sum(expense["amount"] for expense in expenses if expense["category"].startswith(filter))
