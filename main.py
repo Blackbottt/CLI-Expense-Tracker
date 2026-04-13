@@ -125,8 +125,7 @@ def add_category(filter="OFF"):
         elif category_type == "B": category_type = 1
         elif category_type == "C": category_type = 2
         category_type = categories[category_type]["type"]
-        print("category", category_type)
-        show_expenses(expenses, filter=f"{category_type}")
+        return category_type
 
 def add_expense():
     name = validator(str, "Name :")
@@ -249,7 +248,8 @@ while True:
             show_expenses(expenses)
 
     elif wähle == "6":
-        add_category(filter="ON")
+        category_type = add_category(filter="ON")
+        show_expenses(expenses, filter=f"{category_type}")
 
     elif wähle == "7":
         show_expenses(expenses, filter="summary")
