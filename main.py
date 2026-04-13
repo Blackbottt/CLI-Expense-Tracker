@@ -239,7 +239,7 @@ while True:
         edit = validate_index(expenses, "\nWelche Nummer möchten Sie Bearbeiten?", "Bearbeitet: ")
 
         if edit is not None:
-            print("Whelcher Wert sie bearbeiten möchten?")
+            print("Whelcher Wert möchten sie bearbeiten?")
             specification = validator(str, "Name/Betrag/Kategorie: ").lower()
 
             if specification == "name":
