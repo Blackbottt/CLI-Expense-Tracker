@@ -15,6 +15,12 @@ def string_validation_logic(user_input, prompt):
     return user_input
 
 def float_validation_logic(user_input, prompt):
+    try:
+        user_input = float(user_input)
+        if user_input <= 0:
+            print("Bitte positiven Betrag eingeben")
+    except ValueError:
+        print("Bitte positiven Betrag eingeben")
     while True:
         user_input = input(prompt)
         try:
@@ -25,8 +31,14 @@ def float_validation_logic(user_input, prompt):
                 break
         except ValueError:
             print("Bitte positiven Betrag eingeben")
+    return user_input
 
 def integer_validation_logic(user_input, prompt):
+    # print("Int: ", int(user_input))
+    try:
+        user_input = int(user_input)
+    except ValueError:
+        print("Bitte positiven Betrag eingeben")
     while True:
         user_input = input(prompt)
         try:
