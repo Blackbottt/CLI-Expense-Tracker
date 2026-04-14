@@ -1,29 +1,9 @@
 [
     {
-        "name": "kaka",
-        "amount": 55.0,
-        "date": [
-            "2026-04-13T15:30:03.283974",
-            "Mon 13 April 2026"
-        ],
-        "category": null
-    },
-    {
-        "name": "sushi",
-        "amount": 99.0,
-        "date": [
-            "2026-04-13T15:39:46.167588",
-            "Mon 13 April 2026"
-        ],
-        "category": "1 (A)"
-    },
-    {
-        "name": "sushi2",
-        "amount": 55.0,
-        "date": [
-            "2026-04-13T15:40:58.647379",
-            "Mon 13 April 2026"
-        ],
-        "category": "Geschaft (Werbetreibend)"
+        "name": "Clothes and Sneakers",
+        "amount": 100.0,
+        "date_iso": "2026-04-14T09:26:16.040297",
+        "date": "Tue 14 April 2026",
+        "category": "Pers\u00f6nlich (Andere)"
     }
 ]
