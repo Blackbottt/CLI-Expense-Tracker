@@ -1,3 +1,10 @@
+"""
+CLI Expense Tracker
+
+A simple command-line tool to manage expenses with categories,
+filtering, and persistent JSON storage.
+"""
+
 import datetime
 import json
 
@@ -38,9 +45,9 @@ def integer_validation_logic(prompt):
             print("Bitte positiven Betrag eingeben")
     return user_input
 
-def validate_index(list, prompt1, prompt2):
+def validate_index(expenses_list, prompt1, prompt2):
     # this function is different from validator because it validates list index numbers
-    if not list:
+    if not expenses_list:
         print("Keine Ausgaben vorhanden")
         return None
 
@@ -49,7 +56,7 @@ def validate_index(list, prompt1, prompt2):
     while True:
         try:
             index = int(input(prompt2))
-            if index < 1 or index > len(list):
+            if index < 1 or index > len(expenses_list):
                 print("Eintrag existiert nicht!")
             else:
                 break
@@ -241,7 +248,7 @@ while True:
 
         if edit is not None:
             while True:
-                print("Whelcher Wert möchten sie bearbeiten?")
+                print("Welcher Wert möchten sie bearbeiten?")
                 specification = validator("Name/Betrag/Kategorie: ", string_validation_logic).lower()
 
                 if specification == "name":
