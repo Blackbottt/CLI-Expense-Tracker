@@ -240,14 +240,14 @@ while True:
 
         if edit is not None:
             print("Whelcher Wert möchten sie bearbeiten?")
-            specification = validator(str, "Name/Betrag/Kategorie: ").lower()
+            specification = validator("Name/Betrag/Kategorie: ", string_validation_logic).lower()
 
             if specification == "name":
-                name = validator(str, "Name :")
+                name = validator("Name :", string_validation_logic)
                 expenses[edit]["name"] = name
 
             elif specification == "betrag":
-                amount =  validator(float, "Betrag :")
+                amount =  validator("Betrag :", float_validation_logic)
                 expenses[edit]["amount"] = amount
 
             elif specification == "kategorie":
