@@ -154,16 +154,15 @@ def show_expenses(expenses, filter="OFF"):
             print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
         total = sum(expense["amount"] for expense in expenses)
     elif filter == "summary":
-        month = validator("month :", string_validation_logic).lower()
-        # expense_list_size = len(expenses)
-        if month not in expenses:
-            print(f"{month} besteht nicht!") 
-        else:
-            for i, expense in enumerate(expenses, 1):
-                date_str = datetime.datetime.fromisoformat(expense["date_iso"]).strftime("%B").lower()
-                if month == date_str:
-                    if i == 1: print("\n")
-                    print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
+        month = validator("month :", string_validation_logic).capitalize()
+        expense_list_size = len(expenses)
+        for i, expense in enumerate(expenses, 1):
+            date_str = datetime.datetime.fromisoformat(expense["date_iso"]).strftime("%B").capitalize()
+            if i == expense_list_size and month != date_str:
+                print(f"{month} besteht nicht!") 
+            if month == date_str:
+                if i == 1: print("\n")
+                print(f'{i}. {expense["name"]} | ${expense["amount"]:.2f} | {expense["category"]} | {expense["date"]}')
         total = sum(expense["amount"] for expense in expenses if expense["date"])
 
     else:
