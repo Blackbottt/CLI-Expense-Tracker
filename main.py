@@ -214,72 +214,76 @@ def show_menu():
 
     return expenses
 
-while True:
-    expenses = show_menu()
-    wähle = input("\nWähle: ")
 
-    if wähle == "1":
-        expense = add_expense()
-        expenses.append(expense)
-        save_expenses(expenses)
+def main():
+    while True:
+        expenses = show_menu()
+        wähle = input("\nWähle: ")
 
-    elif wähle == "2":
-        show_expenses(expenses)
-
-    elif wähle == "3":
-        save_expenses(expenses)
-        break
-
-    elif wähle == "4":
-        show_expenses(expenses)
-        delete = validate_index(expenses, "\nWelche Nummer möchten Sie löschen?", "Löscht: ")
-
-        if delete is not None:
-            confirmation = input("Sind sie sicher? (j/n)").lower()
-            if confirmation == "j": 
-                expenses.pop(delete)
-                print("Eintrag gelöscht.")
+        if wähle == "1":
+            expense = add_expense()
+            expenses.append(expense)
             save_expenses(expenses)
-            show_expenses(expenses)
-    
-    elif wähle == "5":
-        show_expenses(expenses)
-        edit = validate_index(expenses, "\nWelche Nummer möchten Sie Bearbeiten?", "Bearbeitet: ")
 
-        if edit is not None:
-            while True:
-                print("Welcher Wert möchten sie bearbeiten?")
-                specification = validator("Name/Betrag/Kategorie: ", string_validation_logic).lower()
-
-                if specification == "name":
-                    name = validator("Name :", string_validation_logic)
-                    expenses[edit]["name"] = name
-                    break
-
-                elif specification == "betrag":
-                    amount =  validator("Betrag :", float_validation_logic)
-                    expenses[edit]["amount"] = amount
-                    break
-
-                elif specification == "kategorie":
-                    category = add_category()
-                    expenses[edit]["category"] = category
-                    break
-
-                else:
-                    print("Bitte gib einen bestehende option!")
-
-            print("Eintrag bearbeitet.")
-            save_expenses(expenses)
+        elif wähle == "2":
             show_expenses(expenses)
 
-    elif wähle == "6":
-        category_type = add_category(filter="ON")
-        show_expenses(expenses, filter=f"{category_type}")
+        elif wähle == "3":
+            save_expenses(expenses)
+            break
 
-    elif wähle == "7":
-        show_expenses(expenses, filter="summary")
+        elif wähle == "4":
+            show_expenses(expenses)
+            delete = validate_index(expenses, "\nWelche Nummer möchten Sie löschen?", "Löscht: ")
 
-    else:
-        print("Ungültige Eingabe")
+            if delete is not None:
+                confirmation = input("Sind sie sicher? (j/n)").lower()
+                if confirmation == "j": 
+                    expenses.pop(delete)
+                    print("Eintrag gelöscht.")
+                save_expenses(expenses)
+                show_expenses(expenses)
+        
+        elif wähle == "5":
+            show_expenses(expenses)
+            edit = validate_index(expenses, "\nWelche Nummer möchten Sie Bearbeiten?", "Bearbeitet: ")
 
+            if edit is not None:
+                while True:
+                    print("Welcher Wert möchten sie bearbeiten?")
+                    specification = validator("Name/Betrag/Kategorie: ", string_validation_logic).lower()
+
+                    if specification == "name":
+                        name = validator("Name :", string_validation_logic)
+                        expenses[edit]["name"] = name
+                        break
+
+                    elif specification == "betrag":
+                        amount =  validator("Betrag :", float_validation_logic)
+                        expenses[edit]["amount"] = amount
+                        break
+
+                    elif specification == "kategorie":
+                        category = add_category()
+                        expenses[edit]["category"] = category
+                        break
+
+                    else:
+                        print("Bitte gib einen bestehende option!")
+
+                print("Eintrag bearbeitet.")
+                save_expenses(expenses)
+                show_expenses(expenses)
+
+        elif wähle == "6":
+            category_type = add_category(filter="ON")
+            show_expenses(expenses, filter=f"{category_type}")
+
+        elif wähle == "7":
+            show_expenses(expenses, filter="summary")
+
+        else:
+            print("Ungültige Eingabe")
+
+if __name__ == "__main__":
+    main()
