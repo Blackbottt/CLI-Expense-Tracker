@@ -213,7 +213,6 @@ while True:
 
     if wähle == "1":
         expense = add_expense()
-        print("expense", expense)
         expenses.append(expense)
         save_expenses(expenses)
 
