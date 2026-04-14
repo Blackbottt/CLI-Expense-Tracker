@@ -239,20 +239,28 @@ while True:
         edit = validate_index(expenses, "\nWelche Nummer möchten Sie Bearbeiten?", "Bearbeitet: ")
 
         if edit is not None:
-            print("Whelcher Wert möchten sie bearbeiten?")
-            specification = validator("Name/Betrag/Kategorie: ", string_validation_logic).lower()
+            while True:
+                print("Whelcher Wert möchten sie bearbeiten?")
+                specification = validator("Name/Betrag/Kategorie: ", string_validation_logic).lower()
 
-            if specification == "name":
-                name = validator("Name :", string_validation_logic)
-                expenses[edit]["name"] = name
+                if specification == "name":
+                    name = validator("Name :", string_validation_logic)
+                    expenses[edit]["name"] = name
+                    break
 
-            elif specification == "betrag":
-                amount =  validator("Betrag :", float_validation_logic)
-                expenses[edit]["amount"] = amount
+                elif specification == "betrag":
+                    amount =  validator("Betrag :", float_validation_logic)
+                    expenses[edit]["amount"] = amount
+                    break
 
-            elif specification == "kategorie":
-                category = add_category()
-                expenses[edit]["category"] = category
+                elif specification == "kategorie":
+                    category = add_category()
+                    expenses[edit]["category"] = category
+                    break
+
+                else:
+                    print("Bitte gib einen bestehende option!")
+
             print("Eintrag bearbeitet.")
             save_expenses(expenses)
             show_expenses(expenses)
